@@ -1,0 +1,41 @@
+import os as wey
+def header():
+    wey.system('cls')
+    print(f'{'program menghitung Luas':^40}')
+    print(f'{'Dan keliling Persegi Panjang':^40}')
+    print(f'{'-'*40:^40}')
+def input_user():
+    lebar = int(input('masukkan angka kedalam sini : '))
+    panjang = int(input('masukkan angka kedalam sini : '))
+    return lebar,panjang
+def luas(lebar,panjang):
+    return lebar*panjang
+def keliling(lebar,panjang):
+    return 2*(lebar+panjang)
+while True:
+    header()
+    lebar,panjang = input_user()#dia memiliki 2 variabel yang menyimpan 2 nilai.
+    lu4s = luas(lebar,panjang)
+    kelil1ng = keliling(lebar,panjang)
+    print(f'hasil perhitungan luas = {lu4s}')
+    print(f'hasil perhitungan keliling = {kelil1ng}')
+    lanjut = input('apakah anda ingin berhenti? : ')
+    if lanjut == 'y':
+        break
+print('ini adalah akhir dari program')
+    ini berasal dari faqihza di kelas terbuka
+
+
+note mendetail yang saya kurang pahami: 
+
+- Jika fungsi mengembalikan dua nilai (return a, b), maka pemanggilannya idealnya ditampung oleh dua variabel juga: x, y = fungsi().
+- Jika hanya menampungnya ke satu variabel (data = fungsi()), maka data akan berisi satu objek tuple (a, b), sehingga Anda harus mengaksesnya lewat indeks (data[0] dan data[1]
+
+
+
+contoh : jika variabel yang ditulisnya cuma 1 padahal dia mengandung 2 nilai dari pengembalian, sebagai berikut:
+input_pengguna = input_user()
+    lu4s = luas(input_pengguna[0],input_pengguna[1])
+    kelil1ng = keliling(input_pengguna[0],input_pengguna[1])
+
+beljar kawan
