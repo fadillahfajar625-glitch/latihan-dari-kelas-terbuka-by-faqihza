@@ -1,0 +1,18 @@
+def banyak(*ayam, **kuyang):
+    output = 0
+    if kuyang['option'] == 'tambah':
+        for angka in ayam:
+            output += angka
+    elif kuyang['option'] == 'kali':
+        output = 1
+        for angka in ayam:
+            output *= angka
+        return output
+    else:
+        print('lu masukkin apa kocak')
+    return output
+hasil = banyak(1,2,3,4,5,67,8,option='tambah')
+print(hasil)
+hasil = banyak(1,2,3,4,5,67,8,option='kali')
+print(hasil)
+
