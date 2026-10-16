@@ -1,0 +1,114 @@
+# tujuan akhir minggu membuat calculator cli tanpa ada erorr
+#membuat def untuk memeriksa apakah user memasukkan input angka atau tidak
+def pemeriksaan_angka(input_user):
+    max_wrong = 3
+    wrong = 0
+    while wrong < max_wrong:
+        angka_pertama = input(f'masukkan {input_user} kedalam sini : ')
+        try:
+            nilai_1 = float(angka_pertama)
+            return float(nilai_1)
+        except ValueError:
+            wrong += 1
+            sisa = max_wrong - wrong
+            if sisa > 0:
+                print(f'yang anda masukkan bukan angka ! coba lagi, sisa kesempatan anda {sisa}')
+            else:
+                print('terlalu banyak kesalahan yang dilakukan!!!')
+    return None
+def periksa_angka_nol():
+    max_wrong = 3
+    wrong = 0
+    while wrong < max_wrong:
+        angka = input(f'masukkan angka kedua kedalam sini : ')
+        try:
+            nilai = float(angka)
+            if nilai == 0 and pilihan == '/' :         
+                wrong += 1
+                sisa = max_wrong - wrong
+                if sisa > 0:
+                    print(f'❌ Angka pembagi tidak boleh 0! coba lagi, sisa kesempatan {sisa}\n')
+                else:
+                    print('⛔ Angka pembagi tidak boleh 0! Kesempatan habis.\n')
+                    
+            else:
+                return nilai
+        except ValueError:
+            wrong += 1
+            sisa = max_wrong - wrong
+            if sisa > 0:
+                print(f'❌ Yang anda masukkan bukan angka ! coba lagi, sisa kesempatan {sisa}\n')
+            else:
+                print('⛔ Terlalu banyak kesalahan yang dilakukan!!!\n')
+    return None
+def hitung_semua(angka1,angka2,pilihan):
+    if pilihan == '+':
+        return angka1 + angka2, '+'
+    elif pilihan == '-':
+        return angka1 - angka2, '-'
+    elif pilihan == '*' or pilihan == 'X'.lower():
+        return angka1 * angka2, '*'
+    elif pilihan == '%':
+        return angka1 % angka2, '%'
+    elif pilihan == '**':
+        return angka1 ** angka2, '**'
+    elif pilihan == '//':
+        if angka2 == 0:
+            return 'angka tidak dibisa difloor_division dari 0','//'
+        
+        
+        return angka1 // angka2, '//'
+    elif pilihan == '/':
+        if angka2 == 0 :
+            return 'angka tidak dibisa dibagi 0','/'
+        return angka1 / angka2 , '/'
+    else:
+        return None,None
+# ==========================================
+# ALUR UTAMA PROGRAM
+# ==========================================
+
+print("=== PROGRAM KALKULATOR INTERAKTIF ===\n")
+
+# Step 1: Input angka pertama
+var_1 = pemeriksaan_angka("angka pertama")
+
+if var_1 is not None:
+    # Step 2: Input angka kedua
+    var_2 = pemeriksaan_angka("angka kedua")
+    
+    if var_2 is not None:
+        # Step 3: Menampilkan Menu Pilihan Operasi
+        print("\n" + "="*35)
+        print("PILIH OPERASI MATEMATIKA:")
+        print("Penjumlahan (+)")
+        print("Pengurangan (-)")
+        print("Perkalian   (*)")
+        print("Pembagian   (/)")
+        print("floor_division   (//)")
+        print("eksponen   (**)")
+        print("="*35)
+        
+        pilihan = input("Masukkan pilihan operasi (+,-,*,/,//,**) : ")
+        if pilihan in ['+', '-', '*', '/', '**','%','//']:
+        # Step 3: Ambil Angka Kedua Berdasarkan Operasi
+            if pilihan == '/' or pilihan == '//':
+            # Jika Pembagian, gunakan fungsi khusus yang melarang angka 0
+            
+                var_2 = periksa_angka_nol()
+            else:
+            # Jika Operasi Lain, gunakan fungsi biasa (0 diperbolehkan)
+                 var_2 = pemeriksaan_angka("angka kedua")
+        
+        # Step 4: Hitung dan Tampilkan Hasil
+        hasil, simbol = hitung_semua(var_1, var_2, pilihan)
+        
+        if hasil is not None:
+            print(f"\n✅ Hasil: {var_1} {simbol} {var_2} = {hasil}")
+        else:
+            print("\n❌ Pilihan menu tidak valid!")
+            
+    else:
+        print("\nProgram dihentikan: Angka kedua gagal divalidasi.")
+else:
+    print("\nProgram dihentikan: Angka pertama gagal divalidasi.")
